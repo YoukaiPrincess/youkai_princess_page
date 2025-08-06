@@ -1,0 +1,363 @@
+/* style.css - Add to your existing CSS file */
+
+/* --- Post Page Specific Layout --- */
+.post-content {
+    align-items: center; /* Center the monitor vertically */
+    padding: 20px; /* Adjust padding for post content */
+}
+
+.post-desktop {
+    background-color: var(--color-purple-medium); /* Desktop background for the post page */
+    background-image:
+        repeating-linear-gradient(0deg, var(--color-purple-deep) 0, var(--color-purple-deep) 1px, transparent 1px, transparent 10px),
+        repeating-linear-gradient(90deg, var(--color-purple-deep) 0, var(--color-purple-deep) 1px, transparent 1px, transparent 10px);
+    background-size: 10px 10px; /* Tighter grid for post desktop */
+    padding: 10px; /* Padding inside the screen */
+}
+
+/* --- Text Editor Window Styling --- */
+.text-editor-window {
+    background-color: var(--color-gray-dark); /* Dark background for editor window */
+    border: 3px solid var(--color-gray-light); /* Light pixelated border */
+    box-shadow: 6px 6px 0 var(--color-pink-deep); /* Offset shadow for editor */
+    width: 100%;
+    height: 100%; /* Fill the desktop area */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Hide anything outside editor bounds */
+}
+
+.editor-title-bar {
+    background-color: var(--color-pink-hot); /* Title bar color */
+    color: var(--color-gray-light);
+    font-size: 0.9em;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--color-gray-dark);
+    font-family: var(--font-pixel); /* Pixel font for title bar */
+    text-shadow: 1px 1px 0 var(--color-gray-dark);
+    position: relative;
+    z-index: 1; /* Above other editor elements */
+}
+
+.editor-filename {
+    flex-grow: 1;
+    text-align: center; /* Center filename */
+}
+
+.window-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.control-btn {
+    width: 18px;
+    height: 18px;
+    background-color: var(--color-gray-light);
+    border: 2px solid var(--color-gray-dark);
+    color: var(--color-gray-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+    transition: background-color 0.1s;
+}
+
+.control-btn:hover {
+    background-color: var(--color-pink-light);
+}
+.control-btn.close { background-color: var(--color-pink-deep); color: var(--color-gray-light); }
+.control-btn.close:hover { background-color: var(--color-pink-hot); }
+
+
+.editor-toolbar {
+    background-color: var(--color-purple-deep); /* Toolbar color */
+    padding: 3px 10px;
+    display: flex;
+    gap: 15px;
+    border-bottom: 2px solid var(--color-gray-dark);
+    font-family: var(--font-pixel);
+    font-size: 0.8em;
+    color: var(--color-gray-light);
+    text-shadow: 1px 1px 0 var(--color-gray-dark);
+    position: relative;
+    z-index: 1;
+}
+
+.toolbar-item {
+    cursor: pointer;
+    padding: 2px 0;
+    transition: color 0.1s;
+}
+
+.toolbar-item:hover {
+    color: var(--color-pink-hot);
+}
+
+.text-editor-body {
+    flex-grow: 1; /* Takes up remaining space */
+    display: flex;
+    background-color: var(--color-gray-light); /* White background for the "paper" */
+    overflow-y: auto; /* Allow scrolling for long posts */
+    border: 1px solid var(--color-gray-dark); /* Inner border for text area */
+    position: relative;
+}
+
+/* Custom scrollbar for text editor body */
+.text-editor-body::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.text-editor-body::-webkit-scrollbar-track {
+    background: var(--color-purple-deep);
+    border: 2px solid var(--color-gray-dark);
+}
+
+.text-editor-body::-webkit-scrollbar-thumb {
+    background-color: var(--color-gray-dark);
+    border: 2px solid var(--color-gray-light);
+    box-shadow: inset 1px 1px 0 rgba(255,255,255,0.3);
+}
+
+.text-editor-body::-webkit-scrollbar-corner {
+    background: var(--color-purple-deep);
+}
+
+
+.line-numbers {
+    width: 40px; /* Fixed width for line numbers */
+    height: 100%;
+    background-color: var(--color-purple-medium);
+    color: var(--color-gray-light);
+    padding: 10px 5px;
+    text-align: right;
+    font-family: 'Space Mono', monospace; /* Monospaced font for numbers */
+    font-size: 0.8em;
+    line-height: 2.5em; /* Match text area line height */
+    border-right: 2px solid var(--color-gray-dark);
+    user-select: none; /* Prevent selection of line numbers */
+    flex-shrink: 0; /* Prevent line numbers from shrinking */
+}
+
+.line-numbers span {
+    display: block; /* Each number on a new line */
+}
+
+.editor-text-area {
+    flex-grow: 1;
+    padding: 20px 60px; /* Ample padding for comfortable reading */
+    margin: 5px 60px;
+    font-family: 'Space Mono', monospace; /* Monospaced font for content */
+    font-size: 1em;
+    line-height: 1em; /* Spacing between lines */
+    letter-spacing: 0.04em; /* Slight letter spacing for terminal feel */
+    color: var(--color-gray-dark);
+    white-space: pre-wrap; /* Preserve formatting and wrap text */
+    word-wrap: break-word; /* Ensure long words break */
+    outline: none; /* Remove focus outline */
+    height:max-content;
+}
+
+.editor-text-area p {
+    height: 0.25em;
+
+}
+
+.editor-text-area h2, .editor-text-area h3, .editor-text-area h4 {
+    font-family: var(--font-pixel); /* Headings can use pixel font */
+    color: var(--color-pink-deep);
+    text-shadow: 1px 1px 0 var(--color-gray-dark);
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    line-height: 1.2em;
+}
+
+.post-title {
+    font-size: 1.8em;
+    color: var(--color-purple-deep);
+    text-shadow: 2px 2px 0 var(--color-pink-hot);
+    margin-bottom: 15px;
+}
+
+.post-meta {
+    font-size: 0.9em;
+    color: var(--color-purple-medium);
+    margin-bottom: 30px;
+    font-style: italic;
+    text-shadow: 1px 1px 0 var(--color-gray-light);
+}
+
+.editor-text-area p {
+    margin-bottom: 1.2em; /* Spacing between paragraphs */
+}
+
+/* Blinking Cursor */
+.blinking-cursor {
+    display: inline-block; /* Essential for animation */
+    animation: blink-caret 0.75s step-end infinite;
+    color: var(--color-gray-dark);
+    font-weight: bold;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+@keyframes blink-caret {
+    from, to { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.editor-status-bar {
+    background-color: var(--color-purple-deep);
+    color: var(--color-gray-light);
+    font-family: var(--font-pixel);
+    font-size: 0.8em;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid var(--color-gray-dark);
+    text-shadow: 1px 1px 0 var(--color-gray-dark);
+    flex-shrink: 0; /* Prevent status bar from shrinking */
+}
+/* Ensure main content takes up available space */
+.main-content.post-content {
+    flex-grow: 1; /* Allow main content to expand */
+    display: flex;
+    position:static;
+    justify-content: center; /* Center monitor horizontally */
+    align-items: center; /* Center monitor vertically */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in element's total width and height */
+    width: 95%;
+    min-width: 90%;
+}
+
+/* Ensure the computer-monitor can grow within main-content */
+.computer-monitor {
+    width: 95%; /* Keep max-width for responsive design */
+    min-width: 90%;
+    max-width: 100%; /* Limit the monitor's width */
+    height: 80vh; /* Give it a defined height relative to viewport height */
+    max-height: 700px; /* Prevent it from getting too tall on large screens */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-gray-dark);
+    border: 8px solid var(--color-gray-dark);
+    box-shadow: 15px 15px 0 rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.8);
+    position: relative;
+    padding: 20px; /* Bezel padding */
+    box-sizing: border-box;
+}
+
+.monitor-screen {
+    flex-grow: 1; /* Make screen take up all available space inside monitor */
+    display: flex;
+    flex-direction: column; /* Stack desktop background and footer vertically */
+    background-color: var(--color-purple-dark); /* Default screen background */
+    overflow: hidden; /* Important: Prevent content from spilling out of the screen */
+}
+
+.desktop-background.post-desktop {
+    flex-grow: 1; /* Allow desktop background to take up most of screen space */
+    min-width: none;
+/*    max-width: 75%; */
+    display: flex;
+    flex-direction: column; /* Stack text editor and status bar */
+    background-color: var(--color-purple-medium); /* Desktop background for the post page */
+    background-image:
+        repeating-linear-gradient(0deg, var(--color-purple-deep) 0, var(--color-purple-deep) 1px, transparent 1px, transparent 10px),
+        repeating-linear-gradient(90deg, var(--color-purple-deep) 0, var(--color-purple-deep) 1px, transparent 1px, transparent 10px);
+    background-size: 10px 10px; /* Tighter grid for post desktop */
+    padding: 10px; /* Padding inside the screen before editor */
+    overflow: hidden; /* Important: Prevents inner editor from overflowing */
+}
+
+/* --- Text Editor Window Styling --- */
+.text-editor-window {
+    background-color: var(--color-gray-dark);
+    border: 3px solid var(--color-gray-light);
+    box-shadow: 6px 6px 0 var(--color-pink-deep);
+    width: 100%; /* Take full width of desktop-background padding */
+    flex-grow: 1; /* Allows editor window to take available height */
+    display: flex;
+    flex-direction: column; /* Stack title bar, toolbar, body */
+    overflow: hidden; /* This should contain its direct children without them spilling */
+}
+
+.editor-title-bar {
+    /* ... (existing styles) ... */
+    flex-shrink: 0; /* Prevent title bar from shrinking */
+}
+
+.editor-toolbar {
+    /* ... (existing styles) ... */
+    flex-shrink: 0; /* Prevent toolbar from shrinking */
+}
+
+.text-editor-body {
+    flex-grow: 1; /* Crucial: This makes the body take up the remaining height */
+    display: flex;
+    background-color: var(--color-gray-light);
+    overflow-y: auto; /* THIS IS WHERE THE SCROLLING HAPPENS */
+    border: 1px solid var(--color-gray-dark);
+    position: relative;
+    padding: 0; /* No padding here, padding is on .editor-text-area */
+}
+
+/* Custom scrollbar for text editor body */
+.text-editor-body::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.text-editor-body::-webkit-scrollbar-track {
+    background: var(--color-purple-deep);
+    border: 2px solid var(--color-gray-dark);
+}
+
+.text-editor-body::-webkit-scrollbar-thumb {
+    background-color: var(--color-gray-dark);
+    border: 2px solid var(--color-gray-light);
+    box-shadow: inset 1px 1px 0 rgba(255,255,255,0.3);
+}
+
+.text-editor-body::-webkit-scrollbar-corner {
+    background: var(--color-purple-deep);
+}
+
+
+.line-numbers {
+    flex-shrink: 0; /* Ensure line numbers column doesn't shrink */
+    /* ... (existing styles) ... */
+}
+
+.editor-text-area {
+    flex-grow: 1; /* Allow the text area itself to expand horizontally */
+    padding: 20px 30px; /* Generous padding for text */
+    /* ... (existing styles) ... */
+    word-break: break-word; /* Ensure long words break */
+    min-width: 0; /* Crucial for flex items with text overflow */
+}
+
+.editor-status-bar {
+    /* ... (existing styles) ... */
+    flex-shrink: 0; /* Prevent status bar from shrinking */
+}
+
+/* Re-use the monitor-footer style for the post page */
+.monitor-footer {
+    background-color: var(--color-purple-deep);
+    color: var(--color-gray-light);
+    font-family: var(--font-pixel);
+    font-size: 0.7em;
+    padding: 8px 10px;
+    text-align: center;
+    border-top: 2px solid var(--color-gray-dark);
+    flex-shrink: 0;
+    text-shadow: 1px 1px 0 var(--color-gray-dark);
+}

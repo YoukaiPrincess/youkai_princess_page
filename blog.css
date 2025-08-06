@@ -1,0 +1,205 @@
+/* style.css - Add to your existing CSS file */
+
+/* --- Navigation Bar (re-usable for all pages) --- */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between navigation buttons */
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.main-nav .nav-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    box-shadow: 2px 2px 0 var(--color-gray-dark),
+                inset 2px 2px 0 var(--color-pink-light),
+                inset -2px -2px 0 var(--color-pink-deep);
+}
+
+.main-nav .nav-button:hover {
+    transform: translateY(1px);
+    box-shadow: 3px 3px 0 var(--color-gray-dark),
+                inset 1px 1px 0 var(--color-pink-light),
+                inset -1px -1px 0 var(--color-pink-deep);
+}
+
+.main-nav .nav-button.current-page {
+    background-color: var(--color-purple-light); /* Highlight current page */
+    box-shadow: inset 2px 2px 0 var(--color-purple-medium),
+                inset -2px -2px 0 var(--color-purple-deep),
+                2px 2px 0 var(--color-gray-dark);
+    cursor: default; /* Indicate it's not clickable again */
+}
+
+/* --- Blog Page Specific Layout --- */
+.blog-content {
+    align-items: center; /* Center the monitor vertically */
+    padding: 20px; /* Adjust padding for blog content */
+}
+
+/* --- Computer Monitor Styling --- */
+.computer-monitor {
+    width: 90%; /* Max width for monitor */
+    max-width: 900px; /* Adjust as needed */
+    aspect-ratio: 4/3; /* Classic monitor aspect ratio */
+    background-color: var(--color-gray-dark); /* Bezel color */
+    border: 8px solid var(--color-gray-dark); /* Outer border/shadow */
+    box-shadow: 15px 15px 0 rgba(0,0,0,0.5), /* Large drop shadow for depth */
+                inset 0 0 20px rgba(0,0,0,0.8); /* Inner shadow for screen curvature */
+    position: relative;
+    padding: 20px; /* Padding for the bezel */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.monitor-bezel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 10px solid var(--color-gray-dark); /* Inner bezel for definition */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    box-shadow: inset 5px 5px 10px rgba(0,0,0,0.5),
+                inset -5px -5px 10px rgba(255,255,255,0.1); /* Subtle inner shadow/highlight */
+    pointer-events: none; /* Allows clicks to pass through to screen content */
+    z-index: 2; /* Ensure bezel is above screen content */
+}
+
+.monitor-screen {
+    flex-grow: 1; /* Take up all available space between bezel and base */
+    background-color: var(--color-purple-deep); /* Screen base color */
+    overflow: hidden; /* Hide anything outside the screen */
+    position: relative;
+    border: 2px solid var(--color-gray-dark); /* Inner screen border */
+    box-shadow: inset 0 0 15px rgba(0, 255, 0, 0.2), /* Subtle green CRT glow */
+                inset 0 0 30px rgba(0, 0, 0, 0.8), /* Dark inner shadow for depth */
+                0 0 10px rgba(0, 255, 0, 0.1); /* Outer glow for CRT effect */
+    display: flex; /* For desktop content alignment */
+    flex-direction: column;
+}
+
+.desktop-background {
+    flex-grow: 1;
+    background-color: var(--color-purple-medium); /* Desktop background color */
+    /* Pixelated grid overlay for the desktop background */
+    background-image:
+        repeating-linear-gradient(0deg, var(--color-purple-deep) 0, var(--color-purple-deep) 1px, transparent 1px, transparent 20px),
+        repeating-linear-gradient(90deg, var(--color-purple-deep) 0, var(--color-purple-deep) 1px, transparent 1px, transparent 20px);
+    background-size: 20px 20px;
+    padding: 10px; /* Padding inside the screen */
+    position: relative;
+    z-index: 100; 
+}
+
+.monitor-base {
+    height: 50px; /* Height of the monitor stand/base */
+    background-color: var(--color-gray-dark);
+    margin-top: 20px; /* Space between screen and base */
+    border: 4px solid var(--color-gray-dark);
+    box-shadow: inset 0 5px 10px rgba(0,0,0,0.5);
+    position: relative; 
+}
+
+/* --- Desktop Taskbar (Optional) --- */
+.desktop-taskbar {
+    background-color: var(--color-gray-dark);
+    color: var(--color-gray-light);
+    font-size: 0.8em;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--color-gray-light);
+    text-shadow: 1px 1px 0 black;
+}
+
+.taskbar-item {
+    background-color: var(--color-purple-deep);
+    border: 2px solid var(--color-gray-light);
+    padding: 2px 5px;
+    box-shadow: inset 1px 1px 0 rgba(255,255,255,0.2), inset -1px -1px 0 rgba(0,0,0,0.5);
+}
+
+.taskbar-item.active {
+    background-color: var(--color-pink-hot);
+}
+
+/* --- Desktop Icons Grid --- */
+.desktop-icons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(115px, 1fr)); /* Responsive grid for icons */
+    gap: 15px; /* Space between icons */
+    padding: 20px;
+    position: absolute;
+    top: 40px; /* Below taskbar */
+    left: 0;
+    width: 100%;
+    height: calc(100% - 40px); /* Adjust height to fill screen below taskbar */
+    overflow-y: auto; /* Enable scrolling if too many icons */
+    align-content: start; /* Align items to the top */
+}
+
+/* Style for individual desktop icons */
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-gray-light);
+    font-size: 0.9em;
+    padding: 10px 5px;
+    border: 2px solid transparent; /* Placeholder for hover effect */
+    transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+    text-shadow: 1px 1px 0 var(--color-gray-dark);
+}
+
+.desktop-icon:hover {
+    background-color: rgba(var(--color-pink-hot), 0.2); /* Subtle highlight on hover */
+    border: 2px dashed var(--color-pink-hot); /* Dashed border for selection */
+    cursor: pointer;
+}
+
+.desktop-icon .icon-image {
+    font-size: 3em; /* Size of the placeholder emoji icons */
+    line-height: 1; /* Ensure no extra space around the emoji */
+    margin-bottom: 5px;
+    /* When you replace with actual pixel art images, style them like this: */
+    /* width: 48px; height: 48px; image-rendering: pixelated; */
+}
+
+.desktop-icon .icon-text {
+    word-break: break-word; /* Allow long names to wrap */
+}
+
+/* Example for actual image icons later */
+.desktop-icon .icon-image img {
+    width: 48px; /* Or whatever your pixel icon size is */
+    height: 48px;
+    image-rendering: pixelated; /* Crucial for pixel art to stay sharp */
+    display: block; /* Remove extra space below image */
+}
+
+/* Optional: Scrollbar styling for retro look */
+.desktop-icons-grid::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.desktop-icons-grid::-webkit-scrollbar-track {
+    background: var(--color-purple-deep);
+    border: 2px solid var(--color-gray-dark);
+}
+
+.desktop-icons-grid::-webkit-scrollbar-thumb {
+    background-color: var(--color-gray-dark);
+    border: 2px solid var(--color-gray-light);
+    box-shadow: inset 1px 1px 0 rgba(255,255,255,0.3);
+}
+
+.desktop-icons-grid::-webkit-scrollbar-corner {
+    background: var(--color-purple-deep);
+}
